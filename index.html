@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FST 5.0 | FUKUOKA SUPER TOURNAMENT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#070f24;
+    --navy:#0d1b3d;
+    --navy-light:#16295c;
+    --gold:#c8a765;
+    --gold-soft:#e4d3a6;
+    --white:#f7f6f2;
+    --white-dim:rgba(247,246,242,0.72);
+    --ease:cubic-bezier(0.22,1,0.36,1);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--navy-deep);
+    color:var(--white);
+    font-family:'Noto Serif JP','Cormorant Garamond',serif;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- Header ---------- */
+  .site-header{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px clamp(20px,5vw,64px);
+    background:linear-gradient(to bottom, rgba(7,15,36,0.55), transparent);
+    transition:background 0.6s var(--ease), padding 0.4s var(--ease);
+  }
+  .site-header.scrolled{
+    background:rgba(7,15,36,0.92);
+    backdrop-filter:blur(6px);
+    padding:12px clamp(20px,5vw,64px);
+    box-shadow:0 1px 0 rgba(200,167,101,0.15);
+  }
+
+  .logo-mark{
+    display:flex;
+    align-items:center;
+  }
+  .logo-mark img{
+    height:40px;
+    width:auto;
+    display:block;
+  }
+
+  .main-nav{
+    display:flex;
+    gap:clamp(14px,2.2vw,34px);
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    font-family:'Cormorant Garamond',serif;
+    text-transform:uppercase;
+  }
+  .main-nav a{
+    position:relative;
+    padding-bottom:4px;
+    opacity:0.88;
+    transition:opacity 0.3s var(--ease);
+  }
+  .main-nav a::after{
+    content:'';
+    position:absolute;
+    left:0; bottom:0;
+    width:0%; height:1px;
+    background:var(--gold);
+    transition:width 0.4s var(--ease);
+  }
+  .main-nav a:hover{opacity:1;}
+  .main-nav a:hover::after{width:100%;}
+
+  .nav-toggle{
+    display:none;
+    width:30px; height:20px;
+    position:relative;
+    cursor:pointer;
+    background:none;
+    border:none;
+  }
+  .nav-toggle span{
+    position:absolute; left:0; right:0;
+    height:1px; background:var(--white);
+    transition:transform 0.35s var(--ease), opacity 0.3s var(--ease);
+  }
+  .nav-toggle span:nth-child(1){top:0;}
+  .nav-toggle span:nth-child(2){top:9px;}
+  .nav-toggle span:nth-child(3){top:18px;}
+
+  @media (max-width:860px){
+    .main-nav{
+      position:fixed;
+      top:0; right:0;
+      height:100vh;
+      width:min(78vw,340px);
+      background:rgba(7,15,36,0.97);
+      backdrop-filter:blur(10px);
+      flex-direction:column;
+      justify-content:center;
+      align-items:flex-start;
+      padding:0 44px;
+      gap:26px;
+      font-size:15px;
+      transform:translateX(100%);
+      transition:transform 0.5s var(--ease);
+      border-left:1px solid rgba(200,167,101,0.25);
+    }
+    .main-nav.open{transform:translateX(0);}
+    .nav-toggle{display:block; z-index:110;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    height:100svh;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    padding:100px 20px 36px;
+  }
+
+  .hero video{
+    position:absolute;
+    top:50%; left:50%;
+    min-width:100%; min-height:100%;
+    width:auto; height:auto;
+    transform:translate(-50%,-50%);
+    object-fit:cover;
+    filter:saturate(0.92) brightness(0.75);
+  }
+
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background:
+      linear-gradient(to bottom, rgba(7,15,36,0.6) 0%, rgba(7,15,36,0.4) 32%, rgba(7,15,36,0.78) 80%, var(--navy-deep) 100%);
+    z-index:1;
+  }
+
+  .hero::after{
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0 2px, transparent 2px 44px),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,0.015) 0 2px, transparent 2px 44px);
+    z-index:1;
+    opacity:0.5;
+  }
+
+  .hero-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    max-width:900px;
+  }
+
+  .hero-eyebrow{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(10px,1.3vw,13px);
+    letter-spacing:0.4em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:14px;
+    opacity:0;
+    animation:fadeUp 1.1s var(--ease) 0.15s forwards;
+  }
+
+  .hero-logo{
+    width:min(42vw,210px);
+    height:auto;
+    opacity:0;
+    filter:drop-shadow(0 6px 30px rgba(0,0,0,0.4));
+    animation:fadeUp 1.3s var(--ease) 0.35s forwards;
+  }
+
+  .hero-version{
+    margin-top:8px;
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(22px,3.6vw,32px);
+    letter-spacing:0.14em;
+    color:var(--gold);
+    opacity:0;
+    animation:fadeUp 1.2s var(--ease) 0.5s forwards;
+  }
+
+  .hero-catch{
+    margin-top:12px;
+    font-family:'Noto Serif JP',serif;
+    font-weight:600;
+    font-size:clamp(18px,3vw,27px);
+    letter-spacing:0.06em;
+    color:var(--white);
+    opacity:0;
+    animation:fadeUp 1.2s var(--ease) 0.68s forwards;
+  }
+  .hero-catch .accent{color:var(--gold);}
+
+  .hero-tag{
+    margin-top:16px;
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+    opacity:0;
+    animation:fadeUp 1.2s var(--ease) 0.85s forwards;
+  }
+  .hero-tag .pill{
+    border:1px solid rgba(200,167,101,0.55);
+    padding:7px 18px;
+    font-family:'Noto Serif JP',serif;
+    font-size:12.5px;
+    letter-spacing:0.08em;
+    color:var(--gold-soft);
+  }
+  .hero-tag .month{
+    font-family:'Cormorant Garamond',serif;
+    font-size:16px;
+    letter-spacing:0.1em;
+    color:var(--white-dim);
+  }
+  .hero-tag .month b{
+    font-size:26px;
+    color:var(--white);
+    font-weight:500;
+    margin-left:2px;
+  }
+
+  .hero-dates{
+    margin-top:14px;
+    display:flex;
+    align-items:flex-end;
+    gap:clamp(5px,1.3vw,16px);
+    opacity:0;
+    animation:fadeUp 1.2s var(--ease) 1s forwards;
+  }
+  .hero-dates .d{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+  }
+  .hero-dates .d .num{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(20px,4vw,34px);
+    font-weight:500;
+    line-height:1;
+    color:var(--white);
+  }
+  .hero-dates .d .dow{
+    font-family:'Cormorant Garamond',serif;
+    font-size:10px;
+    letter-spacing:0.14em;
+    color:var(--white-dim);
+    text-transform:uppercase;
+  }
+  .hero-dates .sep{
+    font-size:clamp(16px,2.4vw,22px);
+    color:var(--gold);
+    padding-bottom:10px;
+    opacity:0.7;
+  }
+
+  .hero-meta{
+    margin-top:16px;
+    font-family:'Noto Serif JP',serif;
+    font-size:11.5px;
+    letter-spacing:0.05em;
+    color:var(--white-dim);
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    justify-content:center;
+    opacity:0;
+    animation:fadeUp 1.2s var(--ease) 1.15s forwards;
+  }
+  .hero-meta span{position:relative; padding-left:18px;}
+  .hero-meta span:first-child{padding-left:0;}
+  .hero-meta span:not(:first-child)::before{
+    content:'';
+    position:absolute; left:0; top:50%;
+    transform:translateY(-50%);
+    width:1px; height:12px;
+    background:rgba(247,246,242,0.3);
+  }
+
+  .hero-cta{
+    margin-top:24px;
+    opacity:0;
+    animation:fadeUp 1.2s var(--ease) 1.35s forwards;
+  }
+  .hero-cta a{
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+    padding:13px 32px;
+    border:1px solid var(--gold);
+    color:var(--gold-soft);
+    font-family:'Cormorant Garamond',serif;
+    font-size:12.5px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    position:relative;
+    overflow:hidden;
+    transition:color 0.5s var(--ease);
+  }
+  .hero-cta a::before{
+    content:'';
+    position:absolute; inset:0;
+    background:var(--gold);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform 0.55s var(--ease);
+    z-index:-1;
+  }
+  .hero-cta a:hover{color:var(--navy-deep);}
+  .hero-cta a:hover::before{transform:scaleX(1);}
+  .hero-cta a .arrow{transition:transform 0.4s var(--ease);}
+  .hero-cta a:hover .arrow{transform:translateX(6px);}
+
+  .scroll-cue{
+    position:absolute;
+    bottom:28px; left:50%;
+    transform:translateX(-50%);
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    opacity:0;
+    animation:fadeIn 1.4s var(--ease) 1.8s forwards;
+  }
+  .scroll-cue .line{
+    width:1px; height:40px;
+    background:linear-gradient(to bottom, var(--gold), transparent);
+    animation:scrollLine 2.4s ease-in-out infinite;
+  }
+  .scroll-cue span{
+    font-family:'Cormorant Garamond',serif;
+    font-size:10px;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--white-dim);
+  }
+
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(24px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:0.85;}
+  }
+  @keyframes scrollLine{
+    0%{transform:scaleY(0); transform-origin:top;}
+    45%{transform:scaleY(1); transform-origin:top;}
+    55%{transform:scaleY(1); transform-origin:bottom;}
+    100%{transform:scaleY(0); transform-origin:bottom;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero-eyebrow,.hero-logo,.hero-version,.hero-catch,.hero-tag,.hero-dates,.hero-meta,.hero-cta,.scroll-cue{
+      animation:none !important; opacity:1 !important; transform:none !important;
+    }
+  }
+
+  /* ---------- News ---------- */
+  .news-section{
+    position:relative;
+    padding:120px clamp(20px,6vw,80px) 130px;
+    background:var(--navy-deep);
+    border-top:1px solid rgba(200,167,101,0.15);
+  }
+  .news-section::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.012) 0 2px, transparent 2px 44px),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,0.012) 0 2px, transparent 2px 44px);
+    pointer-events:none;
+  }
+
+  .news-head{
+    position:relative;
+    max-width:1040px;
+    margin:0 auto 64px;
+    text-align:center;
+  }
+  .news-head .eyebrow{
+    font-family:'Cormorant Garamond',serif;
+    font-size:12px;
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:16px;
+  }
+  .news-head h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(38px,6vw,64px);
+    letter-spacing:0.05em;
+    color:var(--white);
+  }
+  .news-head .rule{
+    width:64px; height:1px;
+    background:var(--gold);
+    margin:22px auto 0;
+  }
+
+  .news-list{
+    position:relative;
+    max-width:900px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .news-item{
+    display:grid;
+    grid-template-columns:130px 120px 1fr 26px;
+    align-items:center;
+    gap:20px;
+    padding:26px 8px;
+    border-bottom:1px solid rgba(200,167,101,0.18);
+    transition:background 0.4s var(--ease), padding-left 0.4s var(--ease);
+  }
+  .news-item:first-child{border-top:1px solid rgba(200,167,101,0.18);}
+  .news-item:hover{
+    background:rgba(200,167,101,0.05);
+    padding-left:18px;
+  }
+
+  .news-date{
+    font-family:'Cormorant Garamond',serif;
+    font-size:15px;
+    letter-spacing:0.06em;
+    color:var(--white-dim);
+  }
+
+  .news-tag{
+    justify-self:start;
+    font-family:'Noto Serif JP',serif;
+    font-size:11px;
+    letter-spacing:0.05em;
+    color:var(--gold-soft);
+    border:1px solid rgba(200,167,101,0.5);
+    padding:5px 12px;
+    white-space:nowrap;
+  }
+
+  .news-title{
+    font-family:'Noto Serif JP',serif;
+    font-size:clamp(14.5px,1.6vw,16.5px);
+    letter-spacing:0.02em;
+    color:var(--white);
+    line-height:1.6;
+  }
+
+  .news-arrow{
+    justify-self:end;
+    color:var(--gold);
+    font-family:'Cormorant Garamond',serif;
+    font-size:18px;
+    opacity:0.6;
+    transition:transform 0.4s var(--ease), opacity 0.4s var(--ease);
+  }
+  .news-item:hover .news-arrow{
+    transform:translateX(6px);
+    opacity:1;
+  }
+
+  @media (max-width:640px){
+    .news-item{
+      grid-template-columns:1fr auto;
+      grid-template-areas:
+        "date arrow"
+        "tag tag"
+        "title title";
+      row-gap:10px;
+    }
+    .news-date{grid-area:date;}
+    .news-arrow{grid-area:arrow;}
+    .news-tag{grid-area:tag;}
+    .news-title{grid-area:title;}
+  }
+
+  .news-more{
+    display:flex;
+    justify-content:center;
+    margin-top:56px;
+  }
+  .news-more a{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:13px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    padding-bottom:6px;
+    border-bottom:1px solid rgba(200,167,101,0.4);
+    transition:border-color 0.4s var(--ease), color 0.4s var(--ease);
+  }
+  .news-more a:hover{
+    color:var(--gold);
+    border-color:var(--gold);
+  }
+
+  /* ---------- About ---------- */
+  .about-section{
+    position:relative;
+    padding:0 clamp(20px,6vw,80px) 150px;
+    background:var(--navy-deep);
+  }
+
+  .about-grid{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:clamp(40px,6vw,90px);
+    align-items:center;
+  }
+
+  .about-photo{
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(200,167,101,0.35);
+    aspect-ratio:3/2;
+  }
+  .about-photo img{
+    width:100%; height:100%;
+    object-fit:cover;
+    filter:saturate(0.85) brightness(0.82);
+    transition:transform 1.2s var(--ease);
+  }
+  .about-photo:hover img{transform:scale(1.05);}
+  .about-photo::after{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(7,15,36,0.55), transparent 45%);
+    pointer-events:none;
+  }
+  .about-photo .cap{
+    position:absolute; left:18px; bottom:16px;
+    z-index:2;
+    font-family:'Cormorant Garamond',serif;
+    font-size:11px;
+    letter-spacing:0.14em;
+    color:var(--white-dim);
+    text-transform:uppercase;
+  }
+
+  .about-body .eyebrow{
+    font-family:'Cormorant Garamond',serif;
+    font-size:12px;
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:16px;
+  }
+  .about-body h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(32px,4.6vw,50px);
+    letter-spacing:0.04em;
+    color:var(--white);
+    margin-bottom:28px;
+  }
+  .about-body p{
+    font-family:'Noto Serif JP',serif;
+    font-size:15px;
+    line-height:2.05;
+    letter-spacing:0.02em;
+    color:var(--white-dim);
+    margin-bottom:22px;
+  }
+  .about-body p:last-of-type{margin-bottom:0;}
+
+  .about-flow{
+    margin:38px 0;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .about-flow .node{
+    border:1px solid rgba(200,167,101,0.45);
+    padding:12px 20px;
+    font-family:'Cormorant Garamond',serif;
+    letter-spacing:0.08em;
+  }
+  .about-flow .node b{
+    display:block;
+    font-size:16px;
+    color:var(--gold-soft);
+    font-weight:500;
+  }
+  .about-flow .node span{
+    font-family:'Noto Serif JP',serif;
+    font-size:11px;
+    color:var(--white-dim);
+  }
+  .about-flow .arrow{
+    color:var(--gold);
+    font-size:20px;
+    opacity:0.8;
+  }
+
+  .about-stats{
+    margin-top:44px;
+    display:flex;
+    gap:clamp(30px,5vw,64px);
+    border-top:1px solid rgba(200,167,101,0.25);
+    padding-top:32px;
+  }
+  .about-stats .stat b{
+    display:block;
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(30px,4vw,42px);
+    color:var(--white);
+    line-height:1;
+  }
+  .about-stats .stat b span{color:var(--gold);}
+  .about-stats .stat small{
+    display:block;
+    margin-top:8px;
+    font-family:'Noto Serif JP',serif;
+    font-size:11.5px;
+    letter-spacing:0.06em;
+    color:var(--white-dim);
+  }
+
+  @media (max-width:860px){
+    .about-grid{grid-template-columns:1fr;}
+    .about-photo{aspect-ratio:16/10;}
+  }
+
+  /* ---------- Champions ---------- */
+  .champions-section{
+    position:relative;
+    padding:0 clamp(20px,6vw,80px) 150px;
+    background:var(--navy-deep);
+  }
+
+  .champions-head{
+    max-width:1040px;
+    margin:0 auto 56px;
+    text-align:center;
+  }
+  .champions-head .eyebrow{
+    font-family:'Cormorant Garamond',serif;
+    font-size:12px;
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:16px;
+  }
+  .champions-head h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(38px,6vw,64px);
+    letter-spacing:0.05em;
+    color:var(--white);
+  }
+  .champions-head .rule{
+    width:64px; height:1px;
+    background:var(--gold);
+    margin:22px auto 0;
+  }
+  .champions-head p{
+    margin-top:22px;
+    font-family:'Noto Serif JP',serif;
+    font-size:14px;
+    color:var(--white-dim);
+    line-height:1.9;
+  }
+
+  .champions-grid{
+    max-width:1080px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1.6fr 1fr;
+    gap:clamp(24px,4vw,44px);
+    align-items:start;
+  }
+
+  .champ-card .photo{
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(200,167,101,0.35);
+    aspect-ratio:3/2;
+  }
+  .champ-card .photo img{
+    width:100%; height:100%;
+    object-fit:cover;
+    filter:saturate(0.88) brightness(0.86);
+    transition:transform 1.1s var(--ease);
+  }
+  .champ-card .photo:hover img{transform:scale(1.05);}
+
+  .champ-card .tag{
+    margin-top:22px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:11px;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:16px;
+  }
+
+  .champ-list{
+    display:flex;
+    flex-direction:column;
+  }
+  .champ-list .row{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    padding:14px 0;
+    border-bottom:1px solid rgba(200,167,101,0.15);
+  }
+  .champ-list .row:first-child{padding-top:0;}
+  .champ-list .row .num{
+    font-family:'Cormorant Garamond',serif;
+    font-size:15px;
+    letter-spacing:0.08em;
+    color:var(--gold);
+    flex:0 0 auto;
+    min-width:26px;
+  }
+  .champ-list .row .nm{
+    font-family:'Noto Serif JP',serif;
+    font-size:16px;
+    color:var(--white);
+    letter-spacing:0.02em;
+  }
+
+  .champ-solo .nm{
+    font-family:'Noto Serif JP',serif;
+    font-weight:600;
+    font-size:20px;
+    color:var(--white);
+    letter-spacing:0.02em;
+  }
+  .champ-solo .num{
+    font-family:'Cormorant Garamond',serif;
+    font-size:13px;
+    letter-spacing:0.1em;
+    color:var(--gold);
+    display:block;
+    margin-bottom:6px;
+  }
+
+  @media (max-width:760px){
+    .champions-grid{grid-template-columns:1fr; gap:48px;}
+  }
+
+  /* ---------- Live ---------- */
+  .live-section{
+    position:relative;
+    padding:120px clamp(20px,6vw,80px) 140px;
+    background:var(--navy);
+    border-top:1px solid rgba(200,167,101,0.15);
+  }
+
+  .live-head{
+    max-width:1040px;
+    margin:0 auto 56px;
+    text-align:center;
+  }
+  .live-head .eyebrow{
+    font-family:'Cormorant Garamond',serif;
+    font-size:12px;
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:16px;
+  }
+  .live-head h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(38px,6vw,64px);
+    letter-spacing:0.05em;
+    color:var(--white);
+  }
+  .live-head .rule{
+    width:64px; height:1px;
+    background:var(--gold);
+    margin:22px auto 0;
+  }
+  .live-head p{
+    margin-top:22px;
+    font-family:'Noto Serif JP',serif;
+    font-size:14px;
+    color:var(--white-dim);
+    line-height:1.9;
+  }
+
+  .live-frame{
+    position:relative;
+    max-width:920px;
+    margin:0 auto;
+    aspect-ratio:16/9;
+    border:1px solid rgba(200,167,101,0.35);
+    overflow:hidden;
+    background:
+      linear-gradient(rgba(7,15,36,0.82), rgba(7,15,36,0.9)),
+      url('crowd_crop.jpg') center/cover;
+  }
+
+  .live-frame iframe{
+    width:100%; height:100%;
+    border:0;
+    display:block;
+  }
+
+  .live-badge{
+    position:absolute;
+    top:18px; left:18px;
+    z-index:3;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 14px;
+    background:rgba(7,15,36,0.75);
+    border:1px solid rgba(200,167,101,0.4);
+    font-family:'Cormorant Garamond',serif;
+    font-size:11px;
+    letter-spacing:0.16em;
+    color:var(--gold-soft);
+    text-transform:uppercase;
+  }
+  .live-badge .dot{
+    width:7px; height:7px;
+    border-radius:50%;
+    background:#d64545;
+  }
+  .live-badge.is-live .dot{
+    animation:pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1; transform:scale(1);}
+    50%{opacity:0.45; transform:scale(0.8);}
+  }
+
+  .live-standby{
+    position:absolute; inset:0;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:30px;
+  }
+  .live-standby .label{
+    font-family:'Cormorant Garamond',serif;
+    font-size:12px;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:18px;
+  }
+  .live-standby h3{
+    font-family:'Noto Serif JP',serif;
+    font-weight:600;
+    font-size:clamp(20px,3vw,28px);
+    color:var(--white);
+    margin-bottom:14px;
+  }
+  .live-standby .note{
+    font-family:'Noto Serif JP',serif;
+    font-size:13px;
+    color:var(--white-dim);
+    max-width:420px;
+    line-height:1.9;
+    margin-bottom:30px;
+  }
+  .live-standby a{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 32px;
+    border:1px solid var(--gold);
+    color:var(--gold-soft);
+    font-family:'Cormorant Garamond',serif;
+    font-size:13px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    position:relative;
+    overflow:hidden;
+    transition:color 0.5s var(--ease);
+  }
+  .live-standby a::before{
+    content:'';
+    position:absolute; inset:0;
+    background:var(--gold);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform 0.55s var(--ease);
+    z-index:-1;
+  }
+  .live-standby a:hover{color:var(--navy-deep);}
+  .live-standby a:hover::before{transform:scaleX(1);}
+
+  .live-frame.is-live .live-standby{display:none;}
+  .live-frame:not(.is-live) iframe{display:none;}
+
+  @media (max-width:640px){
+    .live-frame{
+      aspect-ratio:auto;
+      min-height:300px;
+    }
+    .live-standby{padding:26px 18px;}
+    .live-standby .label{font-size:10.5px; letter-spacing:0.22em; margin-bottom:12px;}
+    .live-standby h3{font-size:17px; letter-spacing:0.02em; margin-bottom:10px; word-break:keep-all;}
+    .live-standby .note{font-size:11.5px; line-height:1.8; margin-bottom:20px; max-width:280px;}
+    .live-standby a{padding:11px 22px; font-size:11px; letter-spacing:0.14em; gap:8px;}
+  }
+
+  @media (max-width:380px){
+    .live-frame{min-height:280px;}
+    .live-standby h3{font-size:15px;}
+  }
+  .live-frame:not(.is-live) .live-badge{display:none;}
+
+  /* ---------- Ranking (POS) ---------- */
+  .ranking-section{
+    position:relative;
+    padding:120px clamp(20px,6vw,80px) 140px;
+    background:var(--navy-deep);
+    border-top:1px solid rgba(200,167,101,0.15);
+  }
+
+  .ranking-head{
+    max-width:1040px;
+    margin:0 auto 24px;
+    text-align:center;
+  }
+  .ranking-head .eyebrow{
+    font-family:'Cormorant Garamond',serif;
+    font-size:12px;
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:16px;
+  }
+  .ranking-head h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(38px,6vw,64px);
+    letter-spacing:0.05em;
+    color:var(--white);
+  }
+  .ranking-head .sub{
+    margin-top:10px;
+    font-family:'Noto Serif JP',serif;
+    font-size:12.5px;
+    letter-spacing:0.06em;
+    color:var(--white-dim);
+  }
+  .ranking-head .rule{
+    width:64px; height:1px;
+    background:var(--gold);
+    margin:22px auto 0;
+  }
+
+  .ranking-notice{
+    max-width:640px;
+    margin:34px auto 60px;
+    text-align:center;
+    padding:16px 24px;
+    border:1px solid rgba(200,167,101,0.4);
+    font-family:'Noto Serif JP',serif;
+    font-size:12.5px;
+    letter-spacing:0.03em;
+    color:var(--gold-soft);
+    line-height:1.8;
+  }
+
+  .podium{
+    max-width:940px;
+    margin:0 auto 70px;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:22px;
+    align-items:end;
+  }
+  .podium .p-card{
+    text-align:center;
+    padding:34px 16px 28px;
+    border:1px solid rgba(200,167,101,0.3);
+    background:linear-gradient(to bottom, rgba(200,167,101,0.06), transparent);
+  }
+  .podium .p-card.rank-1{
+    order:2;
+    padding-top:46px;
+    border-color:rgba(200,167,101,0.6);
+  }
+  .podium .p-card.rank-2{order:1;}
+  .podium .p-card.rank-3{order:3;}
+
+  .p-avatar{
+    width:84px; height:84px;
+    margin:0 auto 18px;
+    border-radius:50%;
+    border:1px solid var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Cormorant Garamond',serif;
+    font-size:26px;
+    color:var(--gold-soft);
+    background:rgba(200,167,101,0.06);
+  }
+  .rank-1 .p-avatar{width:104px; height:104px; font-size:32px;}
+
+  .p-rank{
+    font-family:'Cormorant Garamond',serif;
+    font-size:12px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:10px;
+  }
+  .p-name{
+    font-family:'Noto Serif JP',serif;
+    font-size:15px;
+    color:var(--white);
+    margin-bottom:8px;
+  }
+  .p-pts{
+    font-family:'Cormorant Garamond',serif;
+    font-size:13px;
+    color:var(--white-dim);
+    letter-spacing:0.05em;
+  }
+
+  .rank-list{
+    max-width:720px;
+    margin:0 auto;
+  }
+  .rank-row{
+    display:grid;
+    grid-template-columns:44px 44px 1fr auto;
+    align-items:center;
+    gap:18px;
+    padding:16px 8px;
+    border-bottom:1px solid rgba(200,167,101,0.15);
+  }
+  .rank-row:first-child{border-top:1px solid rgba(200,167,101,0.15);}
+  .rank-row .no{
+    font-family:'Cormorant Garamond',serif;
+    font-size:16px;
+    color:var(--gold-soft);
+  }
+  .rank-row .mini-avatar{
+    width:34px; height:34px;
+    border-radius:50%;
+    border:1px solid rgba(200,167,101,0.5);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Cormorant Garamond',serif;
+    font-size:12px;
+    color:var(--gold-soft);
+  }
+  .rank-row .name{
+    font-family:'Noto Serif JP',serif;
+    font-size:14px;
+    color:var(--white-dim);
+  }
+  .rank-row .pts{
+    font-family:'Cormorant Garamond',serif;
+    font-size:13px;
+    color:var(--white-dim);
+    opacity:0.7;
+  }
+
+  @media (max-width:640px){
+    .podium{grid-template-columns:1fr; gap:16px;}
+    .podium .p-card.rank-1,.podium .p-card.rank-2,.podium .p-card.rank-3{order:0; padding-top:34px;}
+  }
+
+  /* ---------- Gallery ---------- */
+  .gallery-section{
+    position:relative;
+    padding:120px clamp(20px,6vw,80px) 140px;
+    background:var(--navy);
+    border-top:1px solid rgba(200,167,101,0.15);
+  }
+
+  .gallery-head{
+    max-width:1040px;
+    margin:0 auto 56px;
+    text-align:center;
+  }
+  .gallery-head .eyebrow{
+    font-family:'Cormorant Garamond',serif;
+    font-size:12px;
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:16px;
+  }
+  .gallery-head h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(38px,6vw,64px);
+    letter-spacing:0.05em;
+    color:var(--white);
+  }
+  .gallery-head .rule{
+    width:64px; height:1px;
+    background:var(--gold);
+    margin:22px auto 0;
+  }
+
+  .gallery-grid{
+    max-width:860px;
+    margin:0 auto;
+  }
+
+  .g-tile{
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(200,167,101,0.3);
+    display:block;
+    aspect-ratio:16/9;
+  }
+
+  .g-tile img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    filter:saturate(0.85) brightness(0.78);
+    transition:transform 1.1s var(--ease), filter 0.6s var(--ease);
+  }
+  .g-tile:hover img{transform:scale(1.06); filter:saturate(0.95) brightness(0.65);}
+
+  .g-tile::after{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(7,15,36,0.8), transparent 45%);
+  }
+
+  .g-tile .g-cap{
+    position:absolute; left:22px; bottom:20px;
+    z-index:2;
+    font-family:'Cormorant Garamond',serif;
+    font-size:13px;
+    letter-spacing:0.14em;
+    color:var(--white);
+    text-transform:uppercase;
+  }
+  .g-tile .g-link{
+    position:absolute; right:18px; bottom:16px;
+    z-index:2;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 18px;
+    border:1px solid var(--gold);
+    background:rgba(7,15,36,0.55);
+    font-family:'Cormorant Garamond',serif;
+    font-size:12px;
+    letter-spacing:0.1em;
+    color:var(--gold-soft);
+    transition:background 0.4s var(--ease), color 0.4s var(--ease);
+  }
+  .g-tile:hover .g-link{background:var(--gold); color:var(--navy-deep);}
+
+  @media (max-width:720px){
+    .g-tile{aspect-ratio:4/3;}
+  }
+
+  /* ---------- Access ---------- */
+  .access-section{
+    position:relative;
+    padding:120px clamp(20px,6vw,80px) 140px;
+    background:var(--navy-deep);
+    border-top:1px solid rgba(200,167,101,0.15);
+  }
+
+  .access-head{
+    max-width:1040px;
+    margin:0 auto 56px;
+    text-align:center;
+  }
+  .access-head .eyebrow{
+    font-family:'Cormorant Garamond',serif;
+    font-size:12px;
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:16px;
+  }
+  .access-head h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(38px,6vw,64px);
+    letter-spacing:0.05em;
+    color:var(--white);
+  }
+  .access-head .rule{
+    width:64px; height:1px;
+    background:var(--gold);
+    margin:22px auto 0;
+  }
+
+  .access-grid{
+    max-width:1080px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:clamp(30px,5vw,60px);
+    align-items:stretch;
+  }
+
+  .access-map{
+    position:relative;
+    border:1px solid rgba(200,167,101,0.35);
+    min-height:360px;
+    overflow:hidden;
+  }
+  .access-map iframe{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    border:0;
+    filter:invert(90%) hue-rotate(180deg) brightness(0.95) contrast(0.9);
+  }
+
+  .access-info h3{
+    font-family:'Noto Serif JP',serif;
+    font-weight:600;
+    font-size:22px;
+    color:var(--white);
+    margin-bottom:6px;
+  }
+  .access-info .addr{
+    font-family:'Noto Serif JP',serif;
+    font-size:13.5px;
+    color:var(--white-dim);
+    line-height:1.8;
+    margin-bottom:28px;
+  }
+
+  .access-list{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    margin-bottom:32px;
+  }
+  .access-list .item{
+    display:flex;
+    gap:16px;
+    padding-bottom:20px;
+    border-bottom:1px solid rgba(200,167,101,0.15);
+  }
+  .access-list .item:last-child{border-bottom:none; padding-bottom:0;}
+  .access-list .tag{
+    flex:0 0 auto;
+    font-family:'Cormorant Garamond',serif;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    border:1px solid rgba(200,167,101,0.5);
+    padding:5px 12px;
+    height:fit-content;
+    white-space:nowrap;
+  }
+  .access-list .desc{
+    font-family:'Noto Serif JP',serif;
+    font-size:13.5px;
+    line-height:1.85;
+    color:var(--white-dim);
+  }
+
+  .access-cta a{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    padding:15px 34px;
+    border:1px solid var(--gold);
+    color:var(--gold-soft);
+    font-family:'Cormorant Garamond',serif;
+    font-size:13px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    position:relative;
+    overflow:hidden;
+    transition:color 0.5s var(--ease);
+  }
+  .access-cta a::before{
+    content:'';
+    position:absolute; inset:0;
+    background:var(--gold);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform 0.55s var(--ease);
+    z-index:-1;
+  }
+  .access-cta a:hover{color:var(--navy-deep);}
+  .access-cta a:hover::before{transform:scaleX(1);}
+
+  @media (max-width:860px){
+    .access-grid{grid-template-columns:1fr;}
+    .access-map{min-height:280px;}
+  }
+
+  /* ---------- SNS ---------- */
+  .sns-section{
+    position:relative;
+    padding:120px clamp(20px,6vw,80px) 130px;
+    background:var(--navy);
+    border-top:1px solid rgba(200,167,101,0.15);
+    text-align:center;
+  }
+  .sns-section .eyebrow{
+    font-family:'Cormorant Garamond',serif;
+    font-size:12px;
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:16px;
+  }
+  .sns-section h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(38px,6vw,64px);
+    letter-spacing:0.05em;
+    color:var(--white);
+  }
+  .sns-section .rule{
+    width:64px; height:1px;
+    background:var(--gold);
+    margin:22px auto 50px;
+  }
+
+  .sns-links{
+    display:flex;
+    justify-content:center;
+    gap:clamp(20px,4vw,40px);
+    flex-wrap:wrap;
+  }
+  .sns-card{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
+    width:200px;
+    padding:38px 20px;
+    border:1px solid rgba(200,167,101,0.35);
+    transition:border-color 0.4s var(--ease), background 0.4s var(--ease), transform 0.4s var(--ease);
+  }
+  .sns-card:hover{
+    border-color:var(--gold);
+    background:rgba(200,167,101,0.05);
+    transform:translateY(-4px);
+  }
+  .sns-card .icon{
+    width:48px; height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid rgba(200,167,101,0.5);
+    border-radius:50%;
+    color:var(--gold-soft);
+    transition:background 0.4s var(--ease), color 0.4s var(--ease);
+  }
+  .sns-card .icon svg{width:20px; height:20px; fill:currentColor;}
+  .sns-card:hover .icon{background:var(--gold); color:var(--navy-deep);}
+  .sns-card .label{
+    font-family:'Cormorant Garamond',serif;
+    font-size:15px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--white);
+  }
+  .sns-card .handle{
+    font-family:'Noto Serif JP',serif;
+    font-size:11.5px;
+    color:var(--white-dim);
+  }
+
+  /* scroll reveal (shared) */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  }
+  .reveal.in-view{
+    opacity:1;
+    transform:translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1 !important; transform:none !important; transition:none !important;}
+  }
+
+  /* placeholder sections so nav anchors resolve */
+  .stub{
+    min-height:40vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--white-dim);
+    font-family:'Cormorant Garamond',serif;
+    letter-spacing:0.1em;
+    font-size:14px;
+    border-top:1px solid rgba(200,167,101,0.15);
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header" id="siteHeader">
+    <a href="#top" class="logo-mark"><img src="fst_mark_nav.png" alt="FST"></a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#news" onclick="closeNav()">News</a>
+      <a href="#about" onclick="closeNav()">About</a>
+      <a href="#champions" onclick="closeNav()">Champions</a>
+      <a href="#live" onclick="closeNav()">Live</a>
+      <a href="#ranking" onclick="closeNav()">Ranking</a>
+      <a href="#gallery" onclick="closeNav()">Gallery</a>
+      <a href="#access" onclick="closeNav()">Access</a>
+      <a href="#sns" onclick="closeNav()">SNS</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <section class="hero" id="top">
+    <video autoplay muted loop playsinline id="heroVideo"
+      poster="crowd_crop.jpg"
+      src="fst5_hero_web.mp4">
+    </video>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">Fukuoka Super Tournament</div>
+
+      <img class="hero-logo" src="fst_logo.png" alt="FST — FUKUOKA SUPER TOURNAMENT">
+      <div class="hero-version">5.0</div>
+
+      <p class="hero-catch">究極<span class="accent">を</span>、遊<span class="accent">べ</span>。</p>
+
+      <div class="hero-tag">
+        <span class="pill">怒涛の5日間開催</span>
+        <span class="month">2026年<b>9</b>月</span>
+      </div>
+
+      <div class="hero-dates">
+        <div class="d"><span class="num">19</span><span class="dow">Sat</span></div>
+        <span class="sep">/</span>
+        <div class="d"><span class="num">20</span><span class="dow">Sun</span></div>
+        <span class="sep">/</span>
+        <div class="d"><span class="num">21</span><span class="dow">Mon</span></div>
+        <span class="sep">/</span>
+        <div class="d"><span class="num">22</span><span class="dow">Tue</span></div>
+        <span class="sep">/</span>
+        <div class="d"><span class="num">23</span><span class="dow">Wed</span></div>
+      </div>
+
+      <div class="hero-meta">
+        <span>会場：ホテルニューオータニ博多</span>
+        <span>主催：株式会社FST</span>
+      </div>
+
+      <div class="hero-cta">
+        <a href="#" id="ctaAppLink">FST 5.0 の詳細を見る <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="news-section" id="news">
+    <div class="news-head reveal">
+      <div class="eyebrow">News</div>
+      <h2>お知らせ</h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="news-list" id="newsList"></div>
+
+    <div class="news-more reveal">
+      <a href="#">View All News</a>
+    </div>
+  </section>
+
+  <section class="about-section" id="about">
+    <div class="about-grid">
+      <div class="about-photo reveal">
+        <img src="about_fslcup.jpg" alt="FSL CUP — FST Ⅳ">
+        <span class="cap">FSL CUP — FST Ⅳ</span>
+      </div>
+
+      <div class="about-body reveal">
+        <div class="eyebrow">About</div>
+        <h2>FST について</h2>
+
+        <p>FST（FUKUOKA SUPER TOURNAMENT）は、九州最大級のポーカートーナメント。原点は、プレイヤーが集うコミュニティ「FSL（FUKUOKA SUPER LEAGUE）」にある。</p>
+
+        <p>「もっと本気で戦える場所を、もっと深い繋がりを」——コミュニティに宿ったその想いを形にするため、リーグの枠を超えたビッグトーナメントとしてFSTは生まれた。</p>
+
+        <p>これはただの試合ではない。磨いた技術をぶつけ合い、新たな仲間と出会い、九州のポーカーシーンを加速させる場所。すべてのプレイヤーが主役になる、最高の舞台を——。</p>
+
+        <div class="about-flow">
+          <div class="node"><b>FSL</b><span>Fukuoka Super League</span></div>
+          <span class="arrow">→</span>
+          <div class="node"><b>FST</b><span>Fukuoka Super Tournament</span></div>
+        </div>
+
+        <div class="about-stats">
+          <div class="stat">
+            <b>4<span>回</span></b>
+            <small>過去開催実績（FST I – IV）</small>
+          </div>
+          <div class="stat">
+            <b><span>5</span>.0</b>
+            <small>2026年9月、第5章が開幕</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 以下は後続フェーズで構築するセクションのプレースホルダー -->
+  <section class="champions-section" id="champions">
+    <div class="champions-head reveal">
+      <div class="eyebrow">Past Champions</div>
+      <h2>歴代優勝者</h2>
+      <div class="rule"></div>
+      <p>これまでのメインイベントを制した、歴代チャンピオンたち。</p>
+    </div>
+
+    <div class="champions-grid reveal">
+      <div class="champ-card">
+        <div class="photo">
+          <img src="champions_1-3.jpg" alt="FST Ⅰ–Ⅲ 優勝者">
+        </div>
+        <div class="tag">FST Ⅰ – Ⅲ Champions</div>
+        <div class="champ-list">
+          <div class="row"><span class="num">Ⅰ</span><span class="nm">モンブラン</span></div>
+          <div class="row"><span class="num">Ⅱ</span><span class="nm">しんたろう</span></div>
+          <div class="row"><span class="num">Ⅲ</span><span class="nm">yamayade</span></div>
+        </div>
+      </div>
+
+      <div class="champ-card champ-solo">
+        <div class="photo">
+          <img src="champions_4.jpg" alt="FST Ⅳ 優勝者 ヤスS@N">
+        </div>
+        <div class="tag">FST Ⅳ Champion</div>
+        <span class="num">Ⅳ</span>
+        <span class="nm">ヤスS@N</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="live-section" id="live">
+    <div class="live-head reveal">
+      <div class="eyebrow">Live</div>
+      <h2>ライブ配信</h2>
+      <div class="rule"></div>
+      <p>大会期間中、主要イベントの模様をYouTubeにてライブ配信予定です。<br>配信中はこちらの画面がそのまま視聴ページになります。</p>
+    </div>
+
+    <div class="live-frame reveal" id="liveFrame">
+      <span class="live-badge" id="liveBadge"><span class="dot"></span>LIVE</span>
+
+      <iframe id="liveIframe"
+        src="https://www.youtube.com/embed/REPLACE_WITH_VIDEO_ID"
+        title="FST 5.0 Live Stream"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+
+      <div class="live-standby">
+        <div class="label">Next Broadcast</div>
+        <h3>FST5.0 FINALTABLE</h3>
+        <p class="note">FST 5.0 大会期間中(2026.09.19–23)、主要イベントを随時ライブ配信予定です。詳しい配信スケジュールは決定次第お知らせします。</p>
+        <a href="#" id="liveChannelLink">YouTubeチャンネルを見る <span>→</span></a>
+      </div>
+    </div>
+  </section>
+  <section class="ranking-section" id="ranking">
+    <div class="ranking-head reveal">
+      <div class="eyebrow">Ranking</div>
+      <h2>POS</h2>
+      <div class="sub">Player of Series — シーズン通算ポイントランキング</div>
+      <div class="rule"></div>
+    </div>
+
+    <div class="ranking-notice reveal" id="rankingNotice">
+      POSランキングは FST 5.0 終了後に確定・公開いたします。<br>
+      下記は公開後のレイアウトサンプルです（表示名・ポイントは仮のものです）。
+    </div>
+
+    <div class="podium reveal" id="posPodium"></div>
+    <div class="rank-list reveal" id="posList"></div>
+  </section>
+  <section class="gallery-section" id="gallery">
+    <div class="gallery-head reveal">
+      <div class="eyebrow">Gallery</div>
+      <h2>ギャラリー</h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="gallery-grid reveal">
+      <a class="g-tile photo" id="galleryFlickrLink" href="https://www.flickr.com/photos/202094071@N03/albums/72177720332585977" target="_blank" rel="noopener">
+        <img src="about_fslcup.jpg" alt="FSL CUP — FST Ⅳ">
+        <span class="g-cap">FSL CUP — FST Ⅳ</span>
+        <span class="g-link">Flickrで見る ↗</span>
+      </a>
+    </div>
+  </section>
+  <section class="access-section" id="access">
+    <div class="access-head reveal">
+      <div class="eyebrow">Access</div>
+      <h2>会場・アクセス</h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="access-grid reveal">
+      <div class="access-map">
+        <iframe
+          src="https://www.google.com/maps?q=%E3%83%9B%E3%83%86%E3%83%AB%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%AA%E3%83%BC%E3%82%BF%E3%83%8B%E5%8D%9A%E5%A4%9A&output=embed"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <div class="access-info">
+        <h3>ホテルニューオータニ博多</h3>
+        <div class="addr">〒810-0004　福岡県福岡市中央区渡辺通1-1-2</div>
+
+        <div class="access-list">
+          <div class="item">
+            <span class="tag">地下鉄</span>
+            <span class="desc">七隈線「渡辺通」駅より徒歩1分</span>
+          </div>
+          <div class="item">
+            <span class="tag">博多駅から</span>
+            <span class="desc">地下鉄七隈線で約5分（210円）、「渡辺通」駅下車</span>
+          </div>
+          <div class="item">
+            <span class="tag">バス</span>
+            <span class="desc">博多駅前Aのりばより約7分（150円）、「渡辺通一丁目」下車すぐ</span>
+          </div>
+        </div>
+
+        <div class="access-cta">
+          <a href="https://www.google.com/maps?q=%E3%83%9B%E3%83%86%E3%83%AB%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%AA%E3%83%BC%E3%82%BF%E3%83%8B%E5%8D%9A%E5%A4%9A" target="_blank" rel="noopener">Google Mapで見る <span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="sns-section reveal" id="sns">
+    <div class="eyebrow">Follow Us</div>
+    <h2>SNS</h2>
+    <div class="rule"></div>
+
+    <div class="sns-links">
+      <a class="sns-card" id="snsXLink" href="https://x.com/fst_202408" target="_blank" rel="noopener">
+        <span class="icon">
+          <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-6.9l-5.4-7.1L4.8 22H1.7l8.1-9.3L1 2h7.1l4.9 6.5L18.9 2zm-1.2 18h1.9L7.4 4h-2l12.3 16z"/></svg>
+        </span>
+        <span class="label">X</span>
+        <span class="handle">@fst_202408</span>
+      </a>
+
+      <a class="sns-card" id="snsInstagramLink" href="https://www.instagram.com/fst_fukuoka/" target="_blank" rel="noopener">
+        <span class="icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 2.05.25 2.5.43a4.9 4.9 0 0 1 1.8 1.16 4.9 4.9 0 0 1 1.17 1.8c.18.45.37 1.3.42 2.5.06 1.4.07 1.8.07 5s0 3.6-.07 4.9c-.05 1.2-.24 2.05-.42 2.5a4.9 4.9 0 0 1-1.17 1.8 4.9 4.9 0 0 1-1.8 1.17c-.45.18-1.3.37-2.5.42-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.05-2.05-.24-2.5-.42a4.9 4.9 0 0 1-1.8-1.17 4.9 4.9 0 0 1-1.17-1.8c-.18-.45-.37-1.3-.42-2.5-.06-1.3-.07-1.7-.07-4.9s0-3.6.07-4.9c.05-1.2.24-2.05.42-2.5a4.9 4.9 0 0 1 1.17-1.8 4.9 4.9 0 0 1 1.8-1.17c.45-.18 1.3-.37 2.5-.42C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.5 0-4.8.07-1 .05-1.6.22-1.96.36-.5.19-.85.42-1.22.79-.37.37-.6.72-.79 1.22-.14.36-.31.95-.36 1.96-.06 1.3-.07 1.65-.07 4.8s0 3.5.07 4.8c.05 1 .22 1.6.36 1.96.19.5.42.85.79 1.22.37.37.72.6 1.22.79.36.14.95.31 1.96.36 1.3.06 1.65.07 4.8.07s3.5 0 4.8-.07c1-.05 1.6-.22 1.96-.36.5-.19.85-.42 1.22-.79.37-.37.6-.72.79-1.22.14-.36.31-.95.36-1.96.06-1.3.07-1.65.07-4.8s0-3.5-.07-4.8c-.05-1-.22-1.6-.36-1.96a3.1 3.1 0 0 0-.79-1.22 3.1 3.1 0 0 0-1.22-.79c-.36-.14-.95-.31-1.96-.36-1.3-.06-1.65-.07-4.8-.07zm0 4.6a5.4 5.4 0 1 1 0 10.8 5.4 5.4 0 0 1 0-10.8zm0 1.8a3.6 3.6 0 1 0 0 7.2 3.6 3.6 0 0 0 0-7.2zm5.6-2a1.26 1.26 0 1 1 0 2.52 1.26 1.26 0 0 1 0-2.52z"/></svg>
+        </span>
+        <span class="label">Instagram</span>
+        <span class="handle">@fst_fukuoka</span>
+      </a>
+    </div>
+  </section>
+
+<script>
+  // Header background on scroll
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+  navToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('open');
+  });
+  function closeNav(){ mainNav.classList.remove('open'); }
+
+  // ============================================================
+  // Content is loaded from /data/*.json so it can be edited via
+  // the /admin CMS without touching this file. Fallback defaults
+  // below are used if the JSON files are unavailable (e.g. first
+  // run before the CMS content exists, or opened without a server).
+  // ============================================================
+
+  const DEFAULT_SITE = {
+    heroVideo: 'fst5_hero_web.mp4',
+    ctaAppUrl: '#',
+    youtubeChannelUrl: '#',
+    liveVideoId: '',
+    isLive: false,
+    flickrUrl: 'https://www.flickr.com/photos/202094071@N03/albums/72177720332585977',
+    xUrl: 'https://x.com/fst_202408',
+    instagramUrl: 'https://www.instagram.com/fst_fukuoka/'
+  };
+
+  const DEFAULT_NEWS = [
+    { date: '2026.07.18', tag: '開催決定', title: 'FST 5.0、2026年9月19日(土)〜23日(水)の5日間開催が決定しました。' },
+    { date: '2026.07.18', tag: 'POS', title: 'Player of Series(POS)ランキングを新たに導入します。詳細は近日公開。' },
+    { date: '2026.06.20', tag: 'LIVE', title: '大会期間中、主要イベントのライブ配信を実施予定です。' },
+    { date: '2026.05.15', tag: 'RECRUIT', title: 'FST 5.0 運営スタッフ・ディーラーの募集を開始しました。' },
+    { date: '2026.04.10', tag: 'REPORT', title: 'FST Ⅳ、大盛況のうちに幕を閉じました。ご参加ありがとうございました。' }
+  ];
+
+  const SAMPLE_POS = Array.from({ length: 20 }, (_, i) => ({
+    rank: i + 1,
+    name: 'PLAYER ' + String(i + 1).padStart(2, '0'),
+    pts: (2400 - i * 87).toLocaleString(),
+    photo: ''
+  }));
+
+  async function loadJSON(path, fallback) {
+    try {
+      const res = await fetch(path, { cache: 'no-store' });
+      if (!res.ok) throw new Error('not ok');
+      return await res.json();
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  function renderNews(items) {
+    const el = document.getElementById('newsList');
+    el.innerHTML = '';
+    items.forEach(n => {
+      const row = document.createElement('div');
+      row.className = 'news-item reveal';
+      row.innerHTML = `
+        <span class="news-date">${n.date}</span>
+        <span class="news-tag">${n.tag}</span>
+        <span class="news-title">${n.title}</span>
+        <span class="news-arrow">→</span>
+      `;
+      el.appendChild(row);
+    });
+    // newly injected .reveal items need to be (re)observed
+    el.querySelectorAll('.reveal').forEach(node => io.observe(node));
+  }
+
+  function renderPos(players, isFinal) {
+    const podiumEl = document.getElementById('posPodium');
+    const listEl = document.getElementById('posList');
+    const notice = document.getElementById('rankingNotice');
+    podiumEl.innerHTML = '';
+    listEl.innerHTML = '';
+    notice.style.display = isFinal ? 'none' : '';
+
+    const top3 = players.slice(0, 3);
+    top3.forEach((p, idx) => {
+      const rank = idx + 1;
+      const card = document.createElement('div');
+      card.className = 'p-card rank-' + rank;
+      const avatar = p.photo
+        ? `<img src="${p.photo}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`
+        : rank;
+      card.innerHTML = `
+        <div class="p-avatar">${avatar}</div>
+        <div class="p-rank">${['1st','2nd','3rd'][idx]}</div>
+        <div class="p-name">${p.name}</div>
+        <div class="p-pts">${p.pts} pt</div>
+      `;
+      podiumEl.appendChild(card);
+    });
+
+    players.slice(3).forEach((p, idx) => {
+      const rank = idx + 4;
+      const row = document.createElement('div');
+      row.className = 'rank-row';
+      const avatar = p.photo
+        ? `<img src="${p.photo}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`
+        : rank;
+      row.innerHTML = `
+        <span class="no">${rank}</span>
+        <span class="mini-avatar">${avatar}</span>
+        <span class="name">${p.name}</span>
+        <span class="pts">${p.pts} pt</span>
+      `;
+      listEl.appendChild(row);
+    });
+  }
+
+  (async function initContent() {
+    const [site, newsData, posData] = await Promise.all([
+      loadJSON('data/site.json', DEFAULT_SITE),
+      loadJSON('data/news.json', { items: DEFAULT_NEWS }),
+      loadJSON('data/pos.json', { isFinal: false, players: [] })
+    ]);
+
+    // Hero video
+    const heroVideo = document.getElementById('heroVideo');
+    if (site.heroVideo) heroVideo.setAttribute('src', site.heroVideo);
+
+    // CTA / external links
+    document.getElementById('ctaAppLink').setAttribute('href', site.ctaAppUrl || '#');
+    document.getElementById('liveChannelLink').setAttribute('href', site.youtubeChannelUrl || '#');
+    document.getElementById('galleryFlickrLink').setAttribute('href', site.flickrUrl || '#');
+    document.getElementById('snsXLink').setAttribute('href', site.xUrl || '#');
+    document.getElementById('snsInstagramLink').setAttribute('href', site.instagramUrl || '#');
+
+    // Live embed
+    const liveFrame = document.getElementById('liveFrame');
+    if (site.isLive) {
+      liveFrame.classList.add('is-live');
+      document.getElementById('liveBadge').classList.add('is-live');
+      if (site.liveVideoId) {
+        document.getElementById('liveIframe').setAttribute(
+          'src', 'https://www.youtube.com/embed/' + site.liveVideoId + '?autoplay=1'
+        );
+      }
+    }
+
+    // News
+    renderNews((newsData.items && newsData.items.length) ? newsData.items : DEFAULT_NEWS);
+
+    // POS ranking — use real results once published, sample layout until then
+    const players = (posData.players && posData.players.length) ? posData.players : SAMPLE_POS;
+    renderPos(players, !!posData.isFinal && posData.players && posData.players.length > 0);
+  })();
+
+  // Subtle scroll reveal for below-the-fold sections
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if(entry.isIntersecting){
+        entry.target.style.transitionDelay = (i % 5) * 90 + 'ms';
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
