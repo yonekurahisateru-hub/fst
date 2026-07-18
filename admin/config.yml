@@ -1,0 +1,58 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+locale: "ja"
+
+collections:
+  - name: "settings"
+    label: "サイト全体設定"
+    files:
+      - file: "data/site.json"
+        label: "動画・リンク設定"
+        name: "site"
+        fields:
+          - { label: "TOP背景動画ファイル", name: "heroVideo", widget: "file", hint: "mp4ファイルをアップロードしてください（軽量化のため 720p / 20MB前後を推奨）" }
+          - { label: "「詳細を見る」ボタンのリンク先（Players Guideアプリ等）", name: "ctaAppUrl", widget: "string" }
+          - { label: "YouTubeチャンネルのURL", name: "youtubeChannelUrl", widget: "string" }
+          - { label: "現在ライブ配信中か", name: "isLive", widget: "boolean", default: false }
+          - { label: "配信中のYouTube動画ID", name: "liveVideoId", widget: "string", required: false, hint: "配信URLの watch?v= の後ろの文字列。isLiveをONの時のみ使用します" }
+          - { label: "Flickrアルバムのリンク先", name: "flickrUrl", widget: "string" }
+          - { label: "X（旧Twitter）のリンク先", name: "xUrl", widget: "string" }
+          - { label: "InstagramのURL", name: "instagramUrl", widget: "string" }
+
+  - name: "news"
+    label: "News（お知らせ）"
+    files:
+      - file: "data/news.json"
+        label: "お知らせ一覧"
+        name: "news"
+        fields:
+          - label: "記事一覧"
+            name: "items"
+            widget: "list"
+            summary: "{{date}} — {{title}}"
+            fields:
+              - { label: "日付", name: "date", widget: "string", hint: "例: 2026.07.18" }
+              - { label: "タグ", name: "tag", widget: "string", hint: "例: 開催決定 / POS / LIVE / RECRUIT" }
+              - { label: "本文", name: "title", widget: "text" }
+
+  - name: "pos"
+    label: "POSランキング"
+    files:
+      - file: "data/pos.json"
+        label: "ランキング結果"
+        name: "pos"
+        fields:
+          - { label: "結果を確定・公開する", name: "isFinal", widget: "boolean", default: false, hint: "OFFの間はサンプルレイアウトが表示されます" }
+          - label: "選手一覧（上から順位順に並べてください）"
+            name: "players"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.pts}}pt"
+            fields:
+              - { label: "ポーカーネーム", name: "name", widget: "string" }
+              - { label: "ポイント", name: "pts", widget: "string" }
+              - { label: "写真", name: "photo", widget: "image", required: false }
