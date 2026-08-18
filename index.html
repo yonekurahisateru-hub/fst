@@ -1546,6 +1546,23 @@
     .company-table .row dt{flex:none;}
   }
 
+  /* Keep section titles on a single line on narrow screens */
+  @media (max-width:560px){
+    .schedule-head h2,
+    .news-head h2,
+    .champions-head h2,
+    .live-head h2,
+    .ranking-head h2,
+    .gallery-head h2,
+    .access-head h2,
+    .sns-section h2,
+    .company-section h2{
+      font-size:clamp(19px,6vw,30px);
+      letter-spacing:0.02em;
+      white-space:nowrap;
+    }
+  }
+
   /* scroll reveal (shared) */
   .reveal{
     opacity:0;
