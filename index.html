@@ -390,6 +390,80 @@
     }
   }
 
+  /* ---------- SCHEDULE ---------- */
+  .schedule-section{
+    position:relative;
+    padding:120px clamp(20px,6vw,80px) 130px;
+    background:var(--navy-deep);
+    border-top:1px solid rgba(200,167,101,0.15);
+  }
+  .schedule-head{
+    max-width:1040px;
+    margin:0 auto 48px;
+    text-align:center;
+  }
+  .schedule-head .eyebrow{
+    font-family:'Cormorant Garamond',serif;
+    font-size:12px;
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:16px;
+  }
+  .schedule-head h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    font-size:clamp(38px,6vw,64px);
+    letter-spacing:0.05em;
+    color:var(--white);
+  }
+  .schedule-head .rule{
+    width:64px; height:1px;
+    background:var(--gold);
+    margin:22px auto 0;
+  }
+  .schedule-frame{
+    max-width:640px;
+    margin:0 auto;
+    border:1px solid rgba(200,167,101,0.35);
+    overflow:hidden;
+  }
+  .schedule-frame img{
+    display:block;
+    width:100%;
+    height:auto;
+  }
+  .schedule-dl{
+    text-align:center;
+    margin-top:32px;
+  }
+  .schedule-dl a{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    padding:15px 34px;
+    border:1px solid var(--gold);
+    color:var(--gold-soft);
+    font-family:'Cormorant Garamond',serif;
+    font-size:13px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    position:relative;
+    overflow:hidden;
+    transition:color 0.5s var(--ease);
+  }
+  .schedule-dl a::before{
+    content:'';
+    position:absolute; inset:0;
+    background:var(--gold);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform 0.55s var(--ease);
+    z-index:-1;
+  }
+  .schedule-dl a:hover{color:var(--navy-deep);}
+  .schedule-dl a:hover::before{transform:scaleX(1);}
+
   /* ---------- News ---------- */
   .news-section{
     position:relative;
@@ -1506,6 +1580,7 @@
   <header class="site-header" id="siteHeader">
     <a href="#top" class="logo-mark"><img src="fst_mark_nav.png" alt="FST"></a>
     <nav class="main-nav" id="mainNav">
+      <a href="#schedule" onclick="closeNav()">Schedule</a>
       <a href="#news" onclick="closeNav()">News</a>
       <a href="#about" onclick="closeNav()">About</a>
       <a href="#champions" onclick="closeNav()">Champions</a>
@@ -1562,6 +1637,20 @@
       </div>
     </div>
   </section>
+
+    <section class="schedule-section" id="schedule">
+      <div class="schedule-head reveal">
+        <div class="eyebrow">Schedule</div>
+        <h2>トーナメントスケジュール</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="schedule-frame reveal">
+        <img src="schedule_2026.png" alt="FST 5.0 トーナメントスケジュール 2026.09.19-23">
+      </div>
+      <div class="schedule-dl reveal">
+        <a href="schedule_2026.pdf" target="_blank" rel="noopener">PDFをダウンロード <span>→</span></a>
+      </div>
+    </section>
 
   <section class="news-section" id="news">
     <div class="news-head reveal">
