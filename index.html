@@ -1592,10 +1592,71 @@
     border-top:1px solid rgba(200,167,101,0.15);
   }
   #ranking, #mainNav a[href="#ranking"]{ display:none !important; }
+  /* CTA notice popup */
+  .cta-modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(7,15,36,0.72);
+    backdrop-filter:blur(4px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity 0.35s var(--ease), visibility 0.35s var(--ease);
+    padding:24px;
+  }
+  .cta-modal-overlay.is-open{
+    opacity:1;
+    visibility:visible;
+  }
+  .cta-modal{
+    background:var(--navy);
+    border:1px solid rgba(200,167,101,0.35);
+    padding:44px 40px;
+    max-width:380px;
+    width:100%;
+    text-align:center;
+    transform:translateY(16px);
+    transition:transform 0.35s var(--ease);
+  }
+  .cta-modal-overlay.is-open .cta-modal{
+    transform:translateY(0);
+  }
+  .cta-modal .eyebrow{
+    font-family:'Cormorant Garamond',serif;
+    font-size:12px;
+    letter-spacing:0.4em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:18px;
+  }
+  .cta-modal p{
+    font-family:'Noto Serif JP',serif;
+    font-size:15.5px;
+    line-height:1.9;
+    color:var(--white);
+    margin-bottom:28px;
+  }
+  .cta-modal button{
+    font-family:'Cormorant Garamond',serif;
+    font-size:13px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--navy-deep);
+    background:var(--gold);
+    border:none;
+    padding:12px 32px;
+    cursor:pointer;
+    transition:background 0.3s var(--ease);
+  }
+  .cta-modal button:hover{
+    background:var(--gold-soft);
+  }
 </style>
 </head>
 <body>
-
   <header class="site-header" id="siteHeader">
     <a href="#top" class="logo-mark"><img src="fst_mark_nav.png" alt="FST"></a>
     <nav class="main-nav" id="mainNav">
@@ -2086,7 +2147,33 @@
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
   revealEls.forEach(el => io.observe(el));
+
+  // CTA notice popup
+  const ctaModalOverlay = document.getElementById('ctaModalOverlay');
+  const ctaAppLink = document.getElementById('ctaAppLink');
+  const ctaModalClose = document.getElementById('ctaModalClose');
+  function openCtaModal(){ ctaModalOverlay.classList.add('is-open'); }
+  function closeCtaModal(){ ctaModalOverlay.classList.remove('is-open'); }
+  ctaAppLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    openCtaModal();
+  });
+  ctaModalClose.addEventListener('click', closeCtaModal);
+  ctaModalOverlay.addEventListener('click', (e) => {
+    if(e.target === ctaModalOverlay) closeCtaModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') closeCtaModal();
+  });
 </script>
+
+<div class="cta-modal-overlay" id="ctaModalOverlay">
+  <div class="cta-modal">
+    <div class="eyebrow">Notice</div>
+    <p>アプリリリースまで、<br>少しお待ちください。</p>
+    <button type="button" id="ctaModalClose">閉じる</button>
+  </div>
+</div>
 
 </body>
 </html>
