@@ -523,6 +523,8 @@
     padding:26px 8px;
     border-bottom:1px solid rgba(200,167,101,0.18);
     transition:background 0.4s var(--ease), padding-left 0.4s var(--ease);
+    text-decoration:none;
+    color:inherit;
   }
   .news-item:first-child{border-top:1px solid rgba(200,167,101,0.18);}
   .news-item:hover{
@@ -1972,8 +1974,14 @@
     const el = document.getElementById('newsList');
     el.innerHTML = '';
     items.forEach(n => {
-      const row = document.createElement('div');
+      const hasLink = !!n.url; 
+      const row = document.createElement(hasLink ? 'a' : 'div');
       row.className = 'news-item reveal';
+      if (hasLink) {
+        row.href = n.url;
+        row.target = '_blank';
+        row.rel = 'noopener';
+      }
       row.innerHTML = `
         <span class="news-date">${n.date}</span>
         <span class="news-tag">${n.tag}</span>
