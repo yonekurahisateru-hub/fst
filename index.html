@@ -1657,6 +1657,13 @@
 </style>
 </head>
 <body>
+<div class="cta-modal-overlay" id="ctaModalOverlay">
+  <div class="cta-modal">
+    <div class="eyebrow">Notice</div>
+    <p>アプリリリースまで、<br>少しお待ちください。</p>
+    <button type="button" id="ctaModalClose">閉じる</button>
+  </div>
+</div>
   <header class="site-header" id="siteHeader">
     <a href="#top" class="logo-mark"><img src="fst_mark_nav.png" alt="FST"></a>
     <nav class="main-nav" id="mainNav">
@@ -2166,14 +2173,6 @@
     if(e.key === 'Escape') closeCtaModal();
   });
 </script>
-
-<div class="cta-modal-overlay" id="ctaModalOverlay">
-  <div class="cta-modal">
-    <div class="eyebrow">Notice</div>
-    <p>アプリリリースまで、<br>少しお待ちください。</p>
-    <button type="button" id="ctaModalClose">閉じる</button>
-  </div>
-</div>
 
 </body>
 </html>
