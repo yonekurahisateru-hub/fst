@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FST5.0 スポンサーのご紹介 | FST 5.0</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#070f24">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#070f24;
+    --navy:#0d1b3d;
+    --navy-light:#16295c;
+    --gold:#c8a765;
+    --gold-soft:#e4d3a6;
+    --white:#f7f6f2;
+    --white-dim:rgba(247,246,242,0.72);
+    --ease:cubic-bezier(0.22,1,0.36,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--navy-deep);
+    color:var(--white);
+    font-family:'Noto Serif JP',serif;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  header{
+    position:relative;
+    padding:26px clamp(20px,6vw,80px);
+    border-bottom:1px solid rgba(200,167,101,0.18);
+  }
+  header .logo-mark{
+    display:inline-flex;
+    align-items:center;
+  }
+  header .logo-mark img{
+    height:36px;
+    width:auto;
+    display:block;
+  }
+
+  main{
+    max-width:980px;
+    margin:0 auto;
+    padding:clamp(56px,8vw,96px) clamp(20px,6vw,80px) 140px;
+  }
+
+  .eyebrow{
+    font-family:'Cormorant Garamond',serif;
+    font-size:12px;
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:18px;
+  }
+
+  h1{
+    font-family:'Noto Serif JP',serif;
+    font-weight:700;
+    font-size:clamp(24px,3.6vw,34px);
+    letter-spacing:0.02em;
+    line-height:1.55;
+    color:var(--white);
+  }
+
+  .updated{
+    margin-top:20px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:15px;
+    letter-spacing:0.06em;
+    color:var(--white-dim);
+  }
+
+  .rule{
+    width:64px; height:1px;
+    background:var(--gold);
+    margin:32px 0 40px;
+  }
+
+  .notice-body > p.lead{
+    font-size:15.5px;
+    color:var(--white-dim);
+    margin-bottom:24px;
+    letter-spacing:0.01em;
+    max-width:720px;
+  }
+
+  .notice-body h2{
+    font-family:'Noto Serif JP',serif;
+    font-weight:700;
+    font-size:clamp(17px,2.2vw,19px);
+    color:var(--gold-soft);
+    letter-spacing:0.02em;
+    margin:64px 0 28px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(200,167,101,0.25);
+  }
+  .notice-body h2:first-of-type{
+    margin-top:52px;
+  }
+  .notice-body h2 .en{
+    display:block;
+    font-family:'Cormorant Garamond',serif;
+    font-size:12px;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--white-dim);
+    margin-top:6px;
+    font-weight:400;
+  }
+
+  /* Sponsor grid */
+  .sponsor-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+  @media (min-width:760px){
+    .sponsor-grid{ grid-template-columns:repeat(2, 1fr); }
+  }
+
+  .sponsor-card{
+    background:var(--navy);
+    border:1px solid rgba(200,167,101,0.22);
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    transition:border-color 0.3s var(--ease);
+  }
+  .sponsor-card:hover{
+    border-color:rgba(200,167,101,0.5);
+  }
+  .sponsor-card .thumb{
+    width:100%;
+    aspect-ratio:16/9;
+    overflow:hidden;
+    background:#ffffff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .sponsor-card .thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .sponsor-card .thumb.contain img{
+    width:auto;
+    height:auto;
+    max-width:72%;
+    max-height:60%;
+    object-fit:contain;
+  }
+  .sponsor-card .body{
+    padding:22px 22px 26px;
+    display:flex;
+    flex-direction:column;
+    flex:1;
+  }
+  .sponsor-card .name{
+    font-family:'Noto Serif JP',serif;
+    font-weight:700;
+    font-size:16.5px;
+    color:var(--white);
+    letter-spacing:0.01em;
+    margin-bottom:12px;
+  }
+  .sponsor-card .name .sub{
+    display:block;
+    font-family:'Cormorant Garamond',serif;
+    font-size:11.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-top:4px;
+    font-weight:500;
+  }
+  .sponsor-card .desc{
+    font-size:14px;
+    line-height:1.85;
+    color:var(--white-dim);
+    flex:1;
+    margin-bottom:16px;
+  }
+  .sponsor-card .official-link{
+    align-self:flex-start;
+    font-family:'Cormorant Garamond',serif;
+    font-size:12.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    text-decoration:none;
+    border-bottom:1px solid rgba(200,167,101,0.4);
+    padding-bottom:3px;
+    transition:color 0.3s var(--ease), border-color 0.3s var(--ease);
+  }
+  .sponsor-card .official-link:hover{
+    color:var(--gold);
+    border-color:var(--gold);
+  }
+
+  .thanks-line{
+    margin-top:64px;
+    padding-top:32px;
+    border-top:1px solid rgba(200,167,101,0.25);
+    font-size:15px;
+    color:var(--white-dim);
+  }
+
+  .notice-body .sign{
+    margin-top:32px;
+    font-family:'Cormorant Garamond',serif;
+    letter-spacing:0.08em;
+    color:var(--white);
+    font-size:16px;
+  }
+
+  .back-link{
+    display:inline-block;
+    margin-top:16px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:14px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    text-decoration:none;
+    border-bottom:1px solid rgba(200,167,101,0.4);
+    padding-bottom:4px;
+    transition:color 0.3s var(--ease), border-color 0.3s var(--ease);
+  }
+  .back-link:hover{
+    color:var(--gold);
+    border-color:var(--gold);
+  }
+
+  footer{
+    padding:28px clamp(20px,6vw,80px);
+    border-top:1px solid rgba(200,167,101,0.15);
+    text-align:center;
+    font-family:'Cormorant Garamond',serif;
+    font-size:12px;
+    letter-spacing:0.08em;
+    color:var(--white-dim);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo-mark" href="/"><img src="fst_mark_nav.png" alt="FST"></a>
+</header>
+
+<main>
+  <div class="eyebrow">Notice</div>
+  <h1>FST5.0 スポンサーのご紹介</h1>
+  <div class="updated">最終更新日：2026年9月18日</div>
+  <div class="rule"></div>
+
+  <div class="notice-body">
+    <p class="lead">FUKUOKA SUPER TOURNAMENT 5.0の開催にあたり、多くの企業・店舗の皆様にご協賛いただいております。飲食からエンターテインメント、テクノロジーまで――福岡から全国、そして世界へ。FST5.0を盛り上げてくださるスポンサーの皆様を、感謝を込めて大々的にご紹介いたします。</p>
+
+    <h2>■ フード &amp; ドリンク<span class="en">Food &amp; Drink</span></h2>
+    <div class="sponsor-grid">
+
+      <div class="sponsor-card">
+        <div class="thumb"><img src="sponsor_kyushuo.jpg" alt="博多中洲焼肉 九州男"></div>
+        <div class="body">
+          <div class="name">博多中洲焼肉 九州男</div>
+          <p class="desc">中洲の夜を彩る、極上の一枚。厳選された和牛が炭火の香りとともに訪れる者を虜にする、深夜まで灯る特等席。対局を終えたプレイヤーたちの労をねぎらう一軒として、ぜひ足を運んでいただきたい。</p>
+          <a class="official-link" href="https://tabelog.com/fukuoka/A4001/A400102/40019527/" target="_blank" rel="noopener">店舗情報を見る →</a>
+        </div>
+      </div>
+
+      <div class="sponsor-card">
+        <div class="thumb"><img src="sponsor_craftchoco.jpg" alt="craft chocolatory cutze"></div>
+        <div class="body">
+          <div class="name">craft chocolatory cutze<span class="sub">クラフトショコラトリー クーツェ</span></div>
+          <p class="desc">門司港の一角に佇む、カカオと真摯に向き合うクラフトチョコレート専門店。豆から丁寧に手掛ける一粒には、作り手のこだわりが凝縮されている。勝負の合間の甘美なひとときに。</p>
+          <a class="official-link" href="https://www.instagram.com/craftchocolatorycutze/" target="_blank" rel="noopener">Instagramを見る →</a>
+        </div>
+      </div>
+
+      <div class="sponsor-card">
+        <div class="thumb"><img src="sponsor_kakuyasu.jpg" alt="なんでも酒やカクヤス"></div>
+        <div class="body">
+          <div class="name">なんでも酒やカクヤス</div>
+          <p class="desc">創業100年を超える老舗酒販店が、いつでもそばに。厳選された銘酒からご褒美の一杯まで、最短即日でお届けする心強い味方。祝勝の乾杯も、カクヤスとともに。</p>
+          <a class="official-link" href="https://www.kakuyasu.co.jp/" target="_blank" rel="noopener">公式サイトを見る →</a>
+        </div>
+      </div>
+
+      <div class="sponsor-card">
+        <div class="thumb"><img src="sponsor_redbull.jpg" alt="Red Bull Japan"></div>
+        <div class="body">
+          <div class="name">Red Bull Japan</div>
+          <p class="desc">"翼をさずける"――世界中のアスリートと挑戦者を後押ししてきたエナジードリンクの代名詞。極限の集中力が試されるロングゲームを、力強くサポートする。</p>
+          <a class="official-link" href="https://www.redbull.com/jp-ja/" target="_blank" rel="noopener">公式サイトを見る →</a>
+        </div>
+      </div>
+
+      <div class="sponsor-card">
+        <div class="thumb"><img src="sponsor_nomushilica.jpg" alt="のむシリカ"></div>
+        <div class="body">
+          <div class="name">霧島天然水 のむシリカ</div>
+          <p class="desc">霧島連山が育んだ天然水に、美容と健康の鍵を握るシリカを豊富に含有。累計販売本数は1億本を突破した実力派。厳しい戦いを勝ち抜く身体づくりを、内側から支える一本。</p>
+          <a class="official-link" href="https://nomu-silica.jp/" target="_blank" rel="noopener">公式サイトを見る →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <h2>■ ビューティー &amp; ウェルネス<span class="en">Beauty &amp; Wellness</span></h2>
+    <div class="sponsor-grid">
+
+      <div class="sponsor-card">
+        <div class="thumb"><img src="sponsor_ventuno.jpg" alt="VENTUNO フコイダンバリア"></div>
+        <div class="body">
+          <div class="name">VENTUNO<span class="sub">フコイダンバリア</span></div>
+          <p class="desc">九州大学との20年以上にわたる共同研究から生まれた独自成分「フコイダンミックスAG」を配合。ここぞという勝負の前のコンディションケアに応える、新世代のサプリメントブランド。</p>
+          <a class="official-link" href="https://www.ventuno.jp/shop/product_categories/fucoidan_barrier" target="_blank" rel="noopener">公式サイトを見る →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <h2>■ ライフスタイル &amp; ホビー<span class="en">Lifestyle &amp; Hobby</span></h2>
+    <div class="sponsor-grid">
+
+      <div class="sponsor-card">
+        <div class="thumb"><img src="sponsor_bloom_lit.jpg" alt="BLOOM × COLLECTOR'S SHOP LIT"></div>
+        <div class="body">
+          <div class="name">BLOOM × COLLECTOR'S SHOP LIT<span class="sub">TCG買取専門店</span></div>
+          <p class="desc">福岡のトレーディングカードシーンを牽引する2大ショップがタッグを結成。ポケモンカード、ワンピースカード、遊戯王など、業界最高水準の買取と豊富な在庫でコレクターの夢を後押しする。</p>
+          <a class="official-link" href="https://collectors-shop-lit.myshopify.com/" target="_blank" rel="noopener">公式サイトを見る →</a>
+        </div>
+      </div>
+
+      <div class="sponsor-card">
+        <div class="thumb"><img src="sponsor_kamekichi.jpg" alt="まじめなとけいや かめ吉"></div>
+        <div class="body">
+          <div class="name">まじめなとけいや かめ吉</div>
+          <p class="desc">「どこよりも安く、どこよりも高く」を掲げるブランド腕時計・ジュエリーの専門店。ロレックスをはじめとした一級品の数々が、勝者の腕元にふさわしい輝きを添える。</p>
+          <a class="official-link" href="https://www.instagram.com/kamekichi.fukuoka/" target="_blank" rel="noopener">Instagramを見る →</a>
+        </div>
+      </div>
+
+      <div class="sponsor-card">
+        <div class="thumb"><img src="sponsor_akracing.jpg" alt="AKRACING"></div>
+        <div class="body">
+          <div class="name">AKRACING</div>
+          <p class="desc">世界のeスポーツシーンで愛用されるプレミアムゲーミングチェアブランド。長時間に及ぶロングゲームでも集中力を切らさない、抜群のホールド感とフィット感を提供する。</p>
+          <a class="official-link" href="https://www.akracing.jp/" target="_blank" rel="noopener">公式サイトを見る →</a>
+        </div>
+      </div>
+
+      <div class="sponsor-card">
+        <div class="thumb"><img src="sponsor_threer.jpg" alt="スリーアール株式会社 AGRelux ZONIQ"></div>
+        <div class="body">
+          <div class="name">スリーアール株式会社<span class="sub">AGRelux / ZONIQ</span></div>
+          <p class="desc">"あぐらをかいてリラックス"がコンセプトのゲーミングチェア「AGRelux」と、集中力サポートサプリメント「ZONIQ」。福岡発の総合商社が、心と身体の両面からプレイヤーを支える。</p>
+          <a class="official-link" href="https://agrelux.jp/" target="_blank" rel="noopener">公式サイトを見る →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <h2>■ エンターテインメント &amp; ナイトライフ<span class="en">Entertainment &amp; Nightlife</span></h2>
+    <div class="sponsor-grid">
+
+      <div class="sponsor-card">
+        <div class="thumb"><img src="sponsor_bon.jpg" alt="梵-bon- 西中洲 大名 六本木"></div>
+        <div class="body">
+          <div class="name">梵-bon-<span class="sub">西中洲 / 大名 / 六本木</span></div>
+          <p class="desc">西中洲・大名で愛される、大人の隠れ家的ラウンジ。洗練されたカクテルとシーシャ、そしてポーカーやバカラも楽しめる特別な空間で、勝負を終えた夜を優雅に締めくくる。</p>
+          <a class="official-link" href="https://www.instagram.com/bon_nishinakasu/" target="_blank" rel="noopener">Instagramを見る →</a>
+        </div>
+      </div>
+
+      <div class="sponsor-card">
+        <div class="thumb"><img src="sponsor_phantom.jpg" alt="PHANTOM"></div>
+        <div class="body">
+          <div class="name">PHANTOM<span class="sub">株式会社ファントム</span></div>
+          <p class="desc">東京・大阪・広島・福岡で多角的に事業を展開するクリエイティブカンパニー。デザインからパン、テクノロジーまで――新たな価値を生み出し続けるPHANTOMの美学が光る。</p>
+          <a class="official-link" href="https://phantom-p.com/" target="_blank" rel="noopener">公式サイトを見る →</a>
+        </div>
+      </div>
+
+      <div class="sponsor-card">
+        <div class="thumb"><img src="sponsor_islandpoker.jpg" alt="ISLAND POKER"></div>
+        <div class="body">
+          <div class="name">ISLAND POKER</div>
+          <p class="desc">椰子の木と碧い海をあしらったロゴが物語る、南国の開放感をまとったポーカーブランド。日常を離れ、島時間で楽しむ新しいポーカー体験を提案する。</p>
+        </div>
+      </div>
+
+      <div class="sponsor-card">
+        <div class="thumb"><img src="sponsor_lavie.jpg" alt="LAVIE RESORT"></div>
+        <div class="body">
+          <div class="name">LAVIE RESORT<span class="sub">LaVie Resort &amp; Casino, Manila</span></div>
+          <p class="desc">マニラの夜景を彩る、フィリピン屈指の統合型リゾート。総額10億ドル規模の大型リニューアルが進行中で、若く洗練された新時代のラグジュアリーを体現する。</p>
+          <a class="official-link" href="https://www.lavie.ph/" target="_blank" rel="noopener">公式サイトを見る →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <h2>■ テクノロジー &amp; パートナー<span class="en">Technology &amp; Partnership</span></h2>
+    <div class="sponsor-grid">
+
+      <div class="sponsor-card">
+        <div class="thumb"><img src="sponsor_reafai.jpg" alt="Reaf AI"></div>
+        <div class="body">
+          <div class="name">Reaf AI<span class="sub">株式会社Reaf</span></div>
+          <p class="desc">効率・自動化・成果・自由の頭文字を掲げ、福岡発でAI・DX支援を手掛けるテクノロジーカンパニー。ChatGPT研修から業務自動化まで、テクノロジーで挑戦者の可能性を広げる。</p>
+          <a class="official-link" href="https://www.reaf-tech.jp/" target="_blank" rel="noopener">公式サイトを見る →</a>
+        </div>
+      </div>
+
+      <div class="sponsor-card">
+        <div class="thumb contain"><img src="https://www.kurumeunsou.co.jp/lib/cmn_img/logo.png" alt="久留米運送"></div>
+        <div class="body">
+          <div class="name">久留米運送株式会社</div>
+          <p class="desc">1951年創業、「まごころを＝はこぶ」を理念に掲げる福岡・久留米の老舗運送会社。地域の物流を長年支え続けてきた確かな実績と信頼が、FST5.0の開催を陰から支える。</p>
+          <a class="official-link" href="https://www.kurumeunsou.co.jp/" target="_blank" rel="noopener">公式サイトを見る →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="thanks-line">FST5.0は、これらスポンサーの皆様のご支援のもと開催いたします。改めまして、心より御礼申し上げます。</p>
+
+    <div class="sign">株式会社FST</div>
+  </div>
+
+  <a class="back-link" href="/">← FST 5.0 トップページへ戻る</a>
+</main>
+
+<footer>&copy; 株式会社FST</footer>
+
+</body>
+</html>
