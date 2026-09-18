@@ -105,6 +105,31 @@
     border-bottom:1px solid rgba(200,167,101,0.25);
   }
 
+  .deadline-box{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    flex-wrap:wrap;
+    margin:-4px 0 32px;
+    padding:16px 20px;
+    border:1px solid rgba(200,167,101,0.45);
+    background:rgba(200,167,101,0.08);
+  }
+  .deadline-box .deadline-label{
+    font-family:'Cormorant Garamond',serif;
+    font-size:12px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+  }
+  .deadline-box .deadline-date{
+    font-family:'Noto Serif JP',serif;
+    font-weight:700;
+    font-size:18px;
+    color:var(--white);
+    letter-spacing:0.02em;
+  }
+
   .notice-body .sign{
     margin-top:56px;
     padding-top:32px;
@@ -125,11 +150,42 @@
     border:1px dashed rgba(200,167,101,0.4);
     background:rgba(200,167,101,0.06);
   }
+
+  .store-category{
+    font-family:'Noto Serif JP',serif;
+    font-weight:700;
+    font-size:16px;
+    color:var(--white);
+    letter-spacing:0.02em;
+    margin:44px 0 6px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .store-category::before{
+    content:"";
+    width:6px;height:6px;
+    background:var(--gold);
+    border-radius:50%;
+    flex-shrink:0;
+  }
+  .category-note{
+    font-size:13.5px;
+    color:var(--white-dim);
+    margin:0 0 18px;
+  }
+  .category-note a{
+    color:var(--gold-soft);
+    text-decoration:none;
+    border-bottom:1px solid rgba(200,167,101,0.35);
+  }
+  .category-note a:hover{ color:var(--gold); border-color:var(--gold); }
+
   .store-list{
     display:grid;
     grid-template-columns:1fr;
     gap:28px;
-    margin:0 0 48px;
+    margin:0 0 8px;
   }
   @media (min-width:640px){
     .store-list{ grid-template-columns:1fr 1fr; }
@@ -144,19 +200,17 @@
   .store-card .store-image{
     width:100%;
     aspect-ratio:16/9;
-    background:
-      repeating-linear-gradient(45deg, rgba(200,167,101,0.06) 0 10px, transparent 10px 20px),
-      linear-gradient(135deg, var(--navy-light), var(--navy-deep));
+    background:var(--navy-light);
     display:flex;
     align-items:center;
     justify-content:center;
-    color:var(--gold-soft);
-    font-family:'Cormorant Garamond',serif;
-    font-size:12px;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    text-align:center;
-    padding:12px;
+    overflow:hidden;
+  }
+  .store-card .store-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
   }
   .store-card .store-info{
     padding:20px 22px 24px;
@@ -170,6 +224,12 @@
     font-weight:700;
     color:var(--white);
     margin-bottom:14px;
+  }
+  .store-card .store-sub{
+    font-size:12.5px;
+    color:var(--gold-soft);
+    margin:-10px 0 14px;
+    letter-spacing:0.02em;
   }
   .store-card .store-meta{
     font-size:14px;
@@ -198,6 +258,32 @@
   .store-card .store-meta a:hover{
     color:var(--gold);
     border-color:var(--gold);
+  }
+  .store-card .store-note-line{
+    font-size:12.5px;
+    color:var(--white-dim);
+    opacity:0.85;
+    margin-top:2px;
+    margin-bottom:10px;
+  }
+  .store-card .branch-block{
+    margin-bottom:16px;
+    padding-bottom:16px;
+    border-bottom:1px solid rgba(200,167,101,0.15);
+  }
+  .store-card .branch-block:last-child{
+    margin-bottom:0;
+    padding-bottom:0;
+    border-bottom:none;
+  }
+  .store-card .branch-name{
+    font-family:'Cormorant Garamond',serif;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    color:var(--gold);
+    margin-bottom:8px;
+    text-transform:uppercase;
   }
 
   .back-link{
@@ -238,44 +324,182 @@
 <main>
   <div class="eyebrow">Notice</div>
   <h1>FST5.0ドリンクチケット使用可能店舗が公開！</h1>
-  <div class="updated">最終更新日：2026年9月13日</div>
+  <div class="updated">最終更新日：2026年9月18日</div>
   <div class="rule"></div>
 
   <div class="notice-body">
-    <p>FSTで手に入れたドリンクチケットが、ホテルニューオータニ内のレストランやカフェはもちろん、近隣の福岡市内の飲食店でもご利用いただけます。</p>
+    <p>FSTで手に入れたドリンクチケットが、ホテルニューオータニ博多内のレストラン・バーはもちろん、福岡市内の人気飲食店でもご利用いただけます。ぜひ大会の合間や打ち上げにご活用ください。</p>
+
+    <div class="deadline-box">
+      <span class="deadline-label">Ticket Valid Until</span>
+      <span class="deadline-date">2026年9月23日（水）まで</span>
+    </div>
 
     <h2>■ チケット使用店舗一覧</h2>
 
-    <div class="store-note">※現在、掲載店舗の情報を準備中です。確定次第、随時追加してまいります。</div>
+    <div class="store-note">※記載の情報は変更となる場合がございます。ご来店の際は事前に各店舗へご確認ください。</div>
+
+    <div class="store-category">ホテルニューオータニ博多</div>
+    <p class="category-note">〒810-0004 福岡県福岡市中央区渡辺通1-1-2　TEL. 092-714-1111（<a href="https://www.google.com/maps/search/?api=1&query=%E3%83%9B%E3%83%86%E3%83%AB%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%AA%E3%83%BC%E3%82%BF%E3%83%8B%E5%8D%9A%E5%A4%9A" target="_blank" rel="noopener">地図を見る</a>）内の下記店舗でご利用いただけます。</p>
 
     <div class="store-list">
       <div class="store-card">
-        <div class="store-image">店舗画像<br>準備中</div>
+        <div class="store-image"><img src="https://www.kys-newotani.co.jp/fileadmin/res/hakata/restaurant/senbazuru/02.jpg" alt="日本料理 千羽鶴"></div>
         <div class="store-info">
-          <h3>店舗名（準備中）</h3>
-          <div class="store-meta">
-            <span class="label">住所</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%9C%8C%E7%A6%8F%E5%B2%A1%E5%B8%82" target="_blank" rel="noopener">福岡県福岡市●●区●●1-2-3</a>
-          </div>
-          <div class="store-meta">
-            <span class="label">電話</span>
-            <a href="tel:0920000000">092-000-0000</a>
-          </div>
+          <h3>日本料理 千羽鶴</h3>
+          <div class="store-meta"><span class="label">Tel</span><a href="tel:0927152008">092-715-2008</a></div>
         </div>
       </div>
 
       <div class="store-card">
-        <div class="store-image">店舗画像<br>準備中</div>
+        <div class="store-image"><img src="https://www.kys-newotani.co.jp/fileadmin/res/hakata/restaurant/taikanen/hall-01.jpg" alt="中国料理 大観苑"></div>
         <div class="store-info">
-          <h3>店舗名（準備中）</h3>
+          <h3>中国料理 大観苑</h3>
+          <div class="store-meta"><span class="label">Tel</span><a href="tel:0927152007">092-715-2007</a></div>
+        </div>
+      </div>
+
+      <div class="store-card">
+        <div class="store-image"><img src="https://www.kys-newotani.co.jp/fileadmin/res/hakata/restaurant/greenhouse/greenhouse_03.jpg" alt="カフェ&レストラン グリーンハウス"></div>
+        <div class="store-info">
+          <h3>カフェ＆レストラン グリーンハウス</h3>
+          <div class="store-meta"><span class="label">Tel</span><a href="tel:0927141111">092-714-1111</a></div>
+        </div>
+      </div>
+
+      <div class="store-card">
+        <div class="store-image"><img src="https://www.kys-newotani.co.jp/fileadmin/res/hakata/restaurant/castillian/castillian-2602.jpg" alt="レストラン カステリアンルーム"></div>
+        <div class="store-info">
+          <h3>レストラン カステリアンルーム</h3>
+          <div class="store-meta"><span class="label">Tel</span><a href="tel:0927152006">092-715-2006</a></div>
+        </div>
+      </div>
+
+      <div class="store-card">
+        <div class="store-image"><img src="https://www.kys-newotani.co.jp/fileadmin/res/hakata/restaurant/castillian-bar/03intro.jpg" alt="BAR カステリアンルーム"></div>
+        <div class="store-info">
+          <h3>BAR カステリアンルーム</h3>
+          <div class="store-meta"><span class="label">Tel</span><a href="tel:0927141111">092-714-1111</a></div>
+          <div class="store-note-line">B1F／火〜木17:00〜23:00・金17:00〜24:00・土14:00〜24:00・日祝14:00〜23:00（月休、祝日は営業）</div>
+        </div>
+      </div>
+
+      <div class="store-card">
+        <div class="store-image"><img src="https://www.kys-newotani.co.jp/fileadmin/res/hakata/restaurant/mendokoro-ohta/260907nikumiso-01.jpg" alt="麺屋 OHTA"></div>
+        <div class="store-info">
+          <h3>麺屋 OHTA</h3>
+          <div class="store-meta"><span class="label">Tel</span><a href="tel:0927220111">092-722-0111</a></div>
+          <div class="store-note-line">B1F／平日ランチタイム限定 11:30〜13:30（土日祝休）・期間限定営業</div>
+        </div>
+      </div>
+
+      <div class="store-card">
+        <div class="store-image"><img src="https://www.kys-newotani.co.jp/fileadmin/res/hakata/restaurant/greenhouse/cake/super-series/sp_montblanc-2601.jpg" alt="グリーンハウス ブティック"></div>
+        <div class="store-info">
+          <h3>グリーンハウス ブティック</h3>
+          <div class="store-meta"><span class="label">Tel</span><a href="tel:0927141111">092-714-1111</a></div>
+          <div class="store-note-line">ケーキ＆パンのテイクアウト専門店</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="store-category">梵-bon-</div>
+    <p class="category-note">福岡発、現代アートと盆栽が融合するラウンジバー。</p>
+
+    <div class="store-list">
+      <div class="store-card">
+        <div class="store-image"><img src="https://tblg.k-img.com/resize/640x640c/restaurant/images/Rvw/276110/dff3310a2b708c990f4825334286ca3d.jpg?token=9dc979e" alt="梵-bon- 西中洲店"></div>
+        <div class="store-info">
+          <h3>梵-bon- 西中洲店</h3>
           <div class="store-meta">
             <span class="label">住所</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%9C%8C%E7%A6%8F%E5%B2%A1%E5%B8%82" target="_blank" rel="noopener">福岡県福岡市●●区●●4-5-6</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%9C%8C%E7%A6%8F%E5%B2%A1%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E8%A5%BF%E4%B8%AD%E6%B4%B21-21+GIO%E3%83%93%E3%83%AB6F" target="_blank" rel="noopener">福岡県福岡市中央区西中洲1-21 GIOビル6F</a>
+          </div>
+          <div class="store-meta"><span class="label">Tel</span><a href="tel:08023590789">080-2359-0789</a></div>
+          <div class="store-note-line">20:00〜4:00（月休）</div>
+        </div>
+      </div>
+
+      <div class="store-card">
+        <div class="store-image"><img src="https://imgfp.hotp.jp/IMGH/75/64/P048907564/P048907564_480.jpg" alt="梵 大名店"></div>
+        <div class="store-info">
+          <h3>梵 大名店（Bon Daimyo）</h3>
+          <div class="store-meta">
+            <span class="label">住所</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%9C%8C%E7%A6%8F%E5%B2%A1%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%A4%A7%E5%90%8D2%E4%B8%81%E7%9B%AE1-42" target="_blank" rel="noopener">福岡県福岡市中央区大名2丁目1-42</a>
           </div>
           <div class="store-meta">
-            <span class="label">電話</span>
-            <a href="tel:0920000001">092-000-0001</a>
+            <span class="label">連絡先</span>
+            <a href="https://www.instagram.com/bon_daimyo/" target="_blank" rel="noopener">Instagram @bon_daimyo（電話非公開）</a>
           </div>
+          <div class="store-note-line">18:00〜翌4:00（水休）</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="store-category">VOLVER（ボルベール）</div>
+    <p class="category-note">大名の路地裏にある本格スペインバル。</p>
+
+    <div class="store-list">
+      <div class="store-card">
+        <div class="store-image"><img src="https://imgfp.hotp.jp/IMGH/90/00/P028959000/P028959000_480.jpg" alt="VOLVER ボルベール"></div>
+        <div class="store-info">
+          <h3>VOLVER（ボルベール）</h3>
+          <div class="store-meta">
+            <span class="label">住所</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%9C%8C%E7%A6%8F%E5%B2%A1%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%A4%A7%E5%90%8D1%E4%B8%81%E7%9B%AE14-15+2F" target="_blank" rel="noopener">福岡県福岡市中央区大名1丁目14-15 2F</a>
+          </div>
+          <div class="store-meta"><span class="label">Tel</span><a href="tel:0927912125">092-791-2125</a></div>
+          <div class="store-note-line">17:00〜翌3:00（火休）</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="store-category">博多塩もつ鍋 仙頭</div>
+    <p class="category-note">福岡市内4店舗でご利用いただけます。</p>
+
+    <div class="store-list">
+      <div class="store-card" style="grid-column:1/-1;">
+        <div class="store-image"><img src="https://imgfp.hotp.jp/IMGH/59/08/P046925908/P046925908_480.jpg" alt="博多塩もつ鍋 仙頭"></div>
+        <div class="store-info">
+          <h3>博多塩もつ鍋 仙頭</h3>
+
+          <div class="branch-block">
+            <div class="branch-name">大名本店</div>
+            <div class="store-meta">
+              <span class="label">住所</span>
+              <a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%9C%8C%E7%A6%8F%E5%B2%A1%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%A4%A7%E5%90%8D2-2-48" target="_blank" rel="noopener">福岡県福岡市中央区大名2-2-48</a>
+            </div>
+            <div class="store-meta"><span class="label">Tel</span><a href="tel:0924064978">092-406-4978</a></div>
+          </div>
+
+          <div class="branch-block">
+            <div class="branch-name">春吉店（西中洲）</div>
+            <div class="store-meta">
+              <span class="label">住所</span>
+              <a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%9C%8C%E7%A6%8F%E5%B2%A1%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E8%A5%BF%E4%B8%AD%E6%B4%B21-4+%E3%83%97%E3%83%AD%E3%82%B9%E3%83%9A%E3%83%AA%E3%82%BF%E8%A5%BF%E4%B8%AD%E6%B4%B2" target="_blank" rel="noopener">福岡県福岡市中央区西中洲1-4 プロスペリタ西中洲2F</a>
+            </div>
+            <div class="store-meta"><span class="label">Tel</span><a href="tel:0927918959">092-791-8959</a></div>
+          </div>
+
+          <div class="branch-block">
+            <div class="branch-name">博多住吉店</div>
+            <div class="store-meta">
+              <span class="label">住所</span>
+              <a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%9C%8C%E7%A6%8F%E5%B2%A1%E5%B8%82%E5%8D%9A%E5%A4%9A%E5%8C%BA%E4%BD%8F%E5%90%892-4-7+%E3%83%AC%E3%82%B8%E3%83%87%E3%83%B3%E3%82%B9%E5%8D%9A%E5%A4%9A1F" target="_blank" rel="noopener">福岡県福岡市博多区住吉2-4-7 レジデンス博多1F</a>
+            </div>
+            <div class="store-meta"><span class="label">Tel</span><a href="tel:0922923887">092-292-3887</a></div>
+          </div>
+
+          <div class="branch-block">
+            <div class="branch-name">中洲店</div>
+            <div class="store-meta">
+              <span class="label">住所</span>
+              <a href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%9C%8C%E7%A6%8F%E5%B2%A1%E5%B8%82%E5%8D%9A%E5%A4%9A%E5%8C%BA%E4%B8%AD%E6%B4%B25-4-6" target="_blank" rel="noopener">福岡県福岡市博多区中洲5-4-6</a>
+            </div>
+            <div class="store-meta"><span class="label">Tel</span><a href="tel:0924027979">092-402-7979</a></div>
+          </div>
+
         </div>
       </div>
     </div>
