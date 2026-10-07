@@ -2047,7 +2047,8 @@
     });
 
     // CTA / external links
-    document.getElementById('ctaAppLink').setAttribute('href', site.ctaAppUrl || '#');
+    const ctaEl = document.getElementById('ctaAppLink');
+    if (ctaEl) ctaEl.setAttribute('href', site.ctaAppUrl || '#');
     document.getElementById('liveChannelLink').setAttribute('href', site.youtubeChannelUrl || '#');
     document.getElementById('galleryFlickrLink').setAttribute('href', site.flickrUrl || '#');
     document.getElementById('snsXLink').setAttribute('href', site.xUrl || '#');
